@@ -50,7 +50,6 @@
                    (service openssh-service-type
                             (openssh-configuration
 			     (port-number 22)
-			     (permit-root-login 'without-password)
 			     (authorized-keys
 			      `(("alyssa" ,(local-file "/home/ubuntu/authorized_keys"))))))
                    %base-services)))
