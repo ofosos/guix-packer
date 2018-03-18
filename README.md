@@ -5,6 +5,8 @@ files to create custom Guix images for AWS.
 
 # Running it
 
+You can get packer at [packer.io](https://www.packer.io/).
+
 You need a valid AWS configuration that packer can find. If you can
 run `aws` commands you should be fine.
 
