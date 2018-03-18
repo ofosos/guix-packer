@@ -1,0 +1,71 @@
+{
+    "variables": {
+	"aws_access_key": "{{ env `AWS_ACCESS_KEY`}}",
+	"aws_secret_key": "{{ env `AWS_SECRET_KEY`}}"
+    },
+    "provisioners": [
+	{
+	    "type": "file",
+	    "source": "authorized_keys",
+	    "destination": "/home/ubuntu/authorized_keys"
+	},
+	{
+	    "type": "file",
+	    "source": "sudoers",
+	    "destination": "/home/ubuntu/sudoers"
+	},
+	{
+	    "type": "file",
+	    "source": "config.scm",
+	    "destination": "/home/ubuntu/config.scm"
+	},
+	{
+	    "type": "file",
+	    "source": "cow-store.sh",
+	    "destination": "/home/ubuntu/cow-store.sh"
+	},
+	{
+	    "type": "file",
+	    "source": "guix.sh",
+	    "destination": "/home/ubuntu/guix.sh"
+	},
+	{
+	    "type": "shell",
+	    "inline": "sudo bash /home/ubuntu/guix.sh"
+	}
+    ],
+    "builders": [{
+	"type": "amazon-ebssurrogate",
+	"ami_virtualization_type": "hvm",
+	"access_key": "{{user `aws_access_key`}}",
+	"secret_key": "{{user `aws_secret_key`}}",
+	"region": "eu-west-1",
+	"source_ami_filter": {
+	    "filters": {
+		"virtualization-type": "hvm",
+		"name": "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*",
+		"root-device-type": "ebs"
+	    },
+	    "owners": ["099720109477"],
+	    "most_recent": true
+	},
+	"instance_type": "t2.small",
+	"ssh_username": "ubuntu",
+	"ami_name": "guix-packer {{timestamp}}",	
+	"launch_block_device_mappings" : [
+	    {
+		"volume_type" : "gp2",
+		"device_name" : "/dev/xvdf",
+		"delete_on_termination" : false,
+		"volume_size" : 8
+	    }
+	],
+	"ami_root_device": {
+	    "source_device_name": "/dev/xvdf",
+	    "device_name": "/dev/xvda",
+	    "delete_on_termination": true,
+	    "volume_size": 8,
+	    "volume_type": "gp2"
+	}
+    }]
+}
