@@ -42,7 +42,7 @@
   (sudoers-file (local-file "/home/ubuntu/sudoers"))
 
   ;; Globally-installed packages.
-  (packages (cons* screen openssh %base-packages))
+  (packages (cons* screen openssh awscli %base-packages))
 
   ;; Add services to the baseline: a DHCP client and
   ;; an SSH server.
