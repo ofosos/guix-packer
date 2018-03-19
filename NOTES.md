@@ -15,7 +15,14 @@ could be done manually, then do `guix system reconfigure`
 could be based on user-data, we could pass in a guix program as
 user-data.
 
-## firstboot
+ignore for now
+
+## PRNG seeding
+
+One option is
+(pollen)[http://blog.dustinkirkland.com/2014/02/random-seeds-in-ubuntu-1404-lts-cloud.html]
+
+## on first boot
 
 needs to deal with the following from the meta-data store
 (`http://169.254.169.254/latest/`)
@@ -24,13 +31,28 @@ needs to deal with the following from the meta-data store
 
 available as `meta-data/public-keys/0/openssh-key`
 
+-> new service to pull those
+
 ### hostname
 
 available as `meta-data/local-hostname`
 
+this is an fqdn
+
 ### same ssh host key everywhere
 
-needs to be regenerated
+needs to be regenerated, see gnu/services/ssh.scm
+
+## enable ena
+
+There's driver for the Elastic Network Adapter on AWS:
+
+(ENA on Github)[https://github.com/amzn/amzn-drivers/tree/master/kernel/linux/ena]
+
+This is a GPL driver. It should be in upstream from at least 4.15 from
+what I can see.
+
+To enable in packer paste `"ena_support": true` into the builder.
 
 ## misc
 
