@@ -3,7 +3,7 @@
 
 (use-modules (gnu))
 (use-service-modules networking ssh)
-(use-package-modules screen ssh)
+(use-package-modules screen ssh python-web)
 
 (operating-system
   (host-name "cdr")
