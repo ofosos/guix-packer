@@ -47,7 +47,7 @@ this is an fqdn
 
 needs to be regenerated, see gnu/services/ssh.scm
 
-## enable ena
+## enable ena (done)
 
 There's driver for the Elastic Network Adapter on AWS:
 
