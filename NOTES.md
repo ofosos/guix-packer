@@ -8,6 +8,10 @@ don't work from console
 
 don't work from console
 
+## shutdown via console
+
+doesn't work, need to check acpi
+
 ## volume provisioning
 
 could be done manually, then do `guix system reconfigure`
