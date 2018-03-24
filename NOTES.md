@@ -31,7 +31,7 @@ One option is
 needs to deal with the following from the meta-data store
 (`http://169.254.169.254/latest/`)
 
-### ssh keys for `alyssa`
+### ssh keys for `alyssa` (done)
 
 available as `meta-data/public-keys/0/openssh-key`
 
@@ -46,6 +46,8 @@ this is an fqdn
 ### same ssh host key everywhere
 
 needs to be regenerated, see gnu/services/ssh.scm
+
+-> delete in public build
 
 ## enable ena (done)
 

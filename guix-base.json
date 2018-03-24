@@ -16,6 +16,11 @@
 	},
 	{
 	    "type": "file",
+	    "source": "aws-fetch-ssh-key",
+	    "destination": "/home/ubuntu/aws-fetch-ssh-key"
+	},
+	{
+	    "type": "file",
 	    "source": "config.scm",
 	    "destination": "/home/ubuntu/config.scm"
 	},

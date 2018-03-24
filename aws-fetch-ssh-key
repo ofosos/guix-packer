@@ -1,0 +1,18 @@
+#!/usr/bin/guile
+!#
+
+(use-modules 
+  (ice-9 receive)
+  (web client)
+  (ice-9 binary-ports))
+
+(define (meta-data path)
+  (let ((uri (string-append "http://169.254.169.254/latest/" path)))
+    (receive (header body)
+        (http-get uri #:decode-body? #f)
+      body)))
+
+(let* ((pubkey (meta-data "meta-data/public-keys/0/openssh-key")))
+  (call-with-output-file "/etc/ssh/authorized_keys.d/alyssa"
+    (lambda (port)
+      (put-bytevector port pubkey))))
